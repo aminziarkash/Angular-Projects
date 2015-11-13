@@ -1,0 +1,40 @@
+<!--LEVEL 5-->
+<!DOCTYPE html>
+<html ng-app="store">
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/application.css" />
+        <script type="text/javascript" src="JavaScript/angular.min.js"></script>
+        <script type="text/javascript" src="JavaScript/app.js"></script>
+        <script type="text/javascript" src="JavaScript/products.js"></script>
+    </head>
+
+    <body class="list-group" ng-controller="StoreController as store">
+            
+        <!--products container / games list-->
+        <div class="list-group-item" ng-repeat="product in store.products | orderBy:'price'">
+
+            <!--get product name using Element directive-->
+            <product-title></product-title>
+
+            <!--add date-->
+            <p> Available in Games Store from : {{product.dateInStore | date}}</p>
+
+            <!-- add image gallery-->
+            <div class="gallery">
+                <div class="img-wrap">
+                    <img class="thumbnail" ng-src="{{product.images[0]}}"/>
+                </div>
+            </div>
+
+            <!--add products panel element-->
+            <product-panels></product-panels>
+            
+            <!--add the Add To Cart Button-->
+            <button class="btn btn-default" ng-show="product.canPurchase"> Add To Cart </button>
+            
+        </div>
+        
+    </body>
+    
+</html>
